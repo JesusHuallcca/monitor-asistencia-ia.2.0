@@ -1,6 +1,6 @@
-"""
-Main FastAPI Application — Monitor Asistencia IA (MySQL)
-Fase 8: Hardening, Seguridad, Auditoría, Manejo de Errores Global y Publicación Web.
+﻿"""
+Main FastAPI Application â€” Monitor Asistencia IA (MySQL)
+Fase 8: Hardening, Seguridad, AuditorÃ­a, Manejo de Errores Global y PublicaciÃ³n Web.
 """
 
 import time
@@ -21,7 +21,7 @@ from app.api.analytics import router as analytics_router
 from app.api.reports import router as reports_router
 from app.api.face import router as face_router
 
-# Configuración de Logging Estructurado
+# ConfiguraciÃ³n de Logging Estructurado
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(name)s - %(message)s"
@@ -34,7 +34,7 @@ app = FastAPI(
     version="3.0.0",
 )
 
-# 1. Configuración de CORS Estricto / Seguro
+# 1. ConfiguraciÃ³n de CORS Estricto / Seguro
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -50,7 +50,7 @@ async def add_security_headers(request: Request, call_next):
     response = await call_next(request)
     process_time = (time.time() - start_time) * 1000
     
-    # Cabeceras de Seguridad Estándar
+    # Cabeceras de Seguridad EstÃ¡ndar
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["X-Frame-Options"] = "SAMEORIGIN"
     response.headers["X-XSS-Protection"] = "1; mode=block"
@@ -62,7 +62,7 @@ async def add_security_headers(request: Request, call_next):
 # 3. Handler Global de Excepciones Unhandled (500 Error Shielding)
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
-    logger.error(f"Excepción no capturada en {request.method} {request.url.path}: {exc}", exc_info=True)
+    logger.error(f"ExcepciÃ³n no capturada en {request.method} {request.url.path}: {exc}", exc_info=True)
     return JSONResponse(
         status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
         content={
@@ -73,7 +73,7 @@ async def global_exception_handler(request: Request, exc: Exception):
         },
     )
 
-# 4. Inclusión de Routers
+# 4. InclusiÃ³n de Routers
 app.include_router(auth_router)
 app.include_router(admin_router)
 app.include_router(users_router)
@@ -84,12 +84,52 @@ app.include_router(chatbot_router)
 app.include_router(reports_router)
 app.include_router(face_router)
 
-# 5. Montaje de Archivos Estáticos del Frontend para Despliegue Web Unificado
+# 5. Montaje de Archivos EstÃ¡ticos del Frontend para Despliegue Web Unificado
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 frontend_path = BASE_DIR / "frontend"
 if frontend_path.exists():
     app.mount("/site", StaticFiles(directory=str(frontend_path), html=True), name="site")
 
+
+
+@app.on_event("startup")
+async def startup_event():
+    """Crea tablas y admin por defecto al iniciar en produccion."""
+    try:
+        from app.core.database import engine, Base
+        import app.models  # noqa: importa todos los modelos
+        Base.metadata.create_all(bind=engine)
+        logger.info("✅ Tablas creadas/verificadas correctamente.")
+
+        # Crear admin por defecto si no existe
+        from app.core.database import SessionLocal
+        from app.models import Usuario
+        from passlib.context import CryptContext
+        import os
+        pwd_ctx = CryptContext(schemes=["bcrypt"], deprecated="auto")
+        db = SessionLocal()
+        try:
+            admin_email = os.getenv("ADMIN_EMAIL", "admin@monitor.com")
+            admin_pass  = os.getenv("ADMIN_PASSWORD", "Admin1234!")
+            exists = db.query(Usuario).filter(Usuario.correo == admin_email).first()
+            if not exists:
+                admin = Usuario(
+                    nombres="Administrador",
+                    apellidos="Sistema",
+                    correo=admin_email,
+                    password_hash=pwd_ctx.hash(admin_pass),
+                    rol="ADMINISTRADOR",
+                    estado=True,
+                )
+                db.add(admin)
+                db.commit()
+                logger.info(f"✅ Admin creado: {admin_email}")
+            else:
+                logger.info("ℹ️  Admin ya existe.")
+        finally:
+            db.close()
+    except Exception as e:
+        logger.error(f"❌ Error en startup: {e}", exc_info=True)
 
 @app.get("/")
 def root():
@@ -105,3 +145,4 @@ def health_check():
         return {"database": "ok", "status": "healthy", "version": "3.0.0"}
     except Exception as e:
         return {"database": "error", "detail": str(e)}
+
