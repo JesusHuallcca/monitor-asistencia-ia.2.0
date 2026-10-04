@@ -1,0 +1,38 @@
+﻿# Entorno virtual Python
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+
+# Variables de entorno (NUNCA subir claves)
+.env
+.env.*
+
+# Backups
+backups/
+*.sql
+*.dump
+
+# Logs
+*.log
+logs/
+
+# PyTest cache
+.pytest_cache/
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+
+# Temporales
+*.tmp
+*.bak
+
+# Node
+node_modules/

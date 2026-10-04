@@ -1,0 +1,239 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Administrador | Asistencia IA</title><link rel="stylesheet" href="../assets/css/admin.css"><link rel="stylesheet" href="../assets/css/chatbot.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"></head><body>
+<div class="admin-app"><aside class="admin-sidebar"><div class="admin-brand"><i class="fa-solid fa-graduation-cap"></i><div><strong>ASISTENCIA IA</strong><span>Administración</span></div></div><nav class="admin-menu"><a class="active" href="dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a><a href="#"><i class="fa-solid fa-users"></i> Usuarios</a><a href="#"><i class="fa-solid fa-book-open"></i> Cursos</a><a href="#"><i class="fa-solid fa-clipboard-check"></i> Asistencias</a><a href="#"><i class="fa-solid fa-chart-line"></i> Analítica</a><a href="#"><i class="fa-solid fa-file-export"></i> Reportes</a><a href="#"><i class="fa-solid fa-brain"></i> Modelos IA</a><a href="#"><i class="fa-solid fa-gear"></i> Configuración</a></nav><div class="admin-sidebar-footer"><a id="logoutAdmin" class="admin-menu-link" href="#" style="display:flex;color:white;text-decoration:none;gap:10px;padding:10px"><i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar sesión</a></div></aside>
+<main class="admin-main"><header class="admin-topbar"><div class="admin-search"><i class="fa-solid fa-magnifying-glass"></i><input placeholder="Buscar usuarios, cursos o reportes..."></div><div class="admin-user"><div class="admin-avatar">A</div><div><strong data-auth-name>Administrador</strong><span data-auth-role>Administrador</span></div></div></header><section class="admin-content"><div id="adminAlert" class="admin-alert"></div><div class="admin-heading"><div><h1>Panel de Administración</h1><p>Resumen general del campus, asistencia y analítica.</p></div><span class="admin-date">Monitor Inteligente de Asistencia IA</span></div>
+<div class="metric-grid"><article class="metric-card"><div class="metric-head"><span>Usuarios</span><div class="metric-icon"><i class="fa-solid fa-users"></i></div></div><strong class="value" id="metricUsuarios">0</strong></article><article class="metric-card"><div class="metric-head"><span>Estudiantes</span><div class="metric-icon"><i class="fa-solid fa-user-graduate"></i></div></div><strong class="value" id="metricEstudiantes">0</strong></article><article class="metric-card"><div class="metric-head"><span>Profesores</span><div class="metric-icon"><i class="fa-solid fa-chalkboard-user"></i></div></div><strong class="value" id="metricProfesores">0</strong></article><article class="metric-card"><div class="metric-head"><span>Cursos</span><div class="metric-icon"><i class="fa-solid fa-book"></i></div></div><strong class="value" id="metricCursos">0</strong></article></div>
+<div class="dashboard-two"><section class="panel"><div class="panel-title"><h2>Indicadores de asistencia</h2><span>Información acumulada</span></div><div class="attendance-cards"><div class="attendance-mini"><span>Promedio de asistencia</span><strong id="metricPromedio">0%</strong></div><div class="attendance-mini"><span>Tasa de ausencias</span><strong id="metricAusencias">0%</strong></div><div class="attendance-mini"><span>Tasa de tardanzas</span><strong id="metricTardanzas">0%</strong></div></div></section><section class="panel"><div class="panel-title"><h2>Distribución de usuarios</h2><span>Por rol</span></div><div class="role-row"><div class="role-label"><span>Estudiantes</span><strong>0</strong></div><div class="bar-track"><div id="barEstudiantes" class="bar-fill"></div></div></div><div class="role-row"><div class="role-label"><span>Profesores</span><strong>0</strong></div><div class="bar-track"><div id="barProfesores" class="bar-fill"></div></div></div><div class="role-row"><div class="role-label"><span>Administradores</span><strong>0</strong></div><div class="bar-track"><div id="barAdministradores" class="bar-fill"></div></div></div></section></div>
+<div class="dashboard-two"><section class="panel"><div class="panel-title"><h2>Estadística y fórmulas</h2><span>Base matemática del sistema</span></div><div class="formula-grid"><div class="formula-card"><h3>Media de asistencia</h3><div class="formula">x̄ = Σxᵢ / n</div><div class="formula-result" id="formulaMediaValue">0%</div><p>Resume el nivel promedio de asistencia de los registros disponibles.</p></div><div class="formula-card"><h3>Mediana</h3><div class="formula">Md = valor central ordenado</div><p>Permite analizar el centro de la distribución evitando que valores extremos distorsionen el resultado.</p></div><div class="formula-card"><h3>Percentil</h3><div class="formula">Pₖ = k(n+1) / 100</div><p>Ubica estudiantes dentro de la distribución de asistencia para análisis comparativos.</p></div><div class="formula-card"><h3>Probabilidad estimada</h3><div class="formula">P(A) = casos favorables / casos totales</div><p>Base para estimaciones de inasistencia y tardanza antes de incorporar el modelo ML.</p></div></div></section><section class="panel"><div class="panel-title"><h2>Sesiones recientes</h2><span>Últimas clases</span></div><div id="recentSessions"><div class="empty-state">Cargando sesiones...</div></div></section></div>
+</section></main></div><!-- =====================================================
+     ASISTENTE IA - COMPONENTE GLOBAL
+===================================================== -->
+
+<!-- Fondo cuando el panel está abierto -->
+<div
+    class="chat-overlay"
+    id="chatOverlay"
+></div>
+
+
+<!-- =====================================================
+     BOTÓN FLOTANTE
+===================================================== -->
+
+<button
+    class="chat-floating-button"
+    id="chatFloatingButton"
+    type="button"
+    aria-label="Abrir Asistente IA"
+>
+
+    <i class="fa-solid fa-robot"></i>
+
+    <span
+        class="chat-floating-notification"
+        id="chatNotification"
+    >
+        1
+    </span>
+
+</button>
+
+
+<!-- =====================================================
+     PANEL DEL CHATBOT
+===================================================== -->
+
+<aside
+    class="chat-panel"
+    id="chatPanel"
+>
+
+
+    <!-- =================================================
+         HEADER
+    ================================================== -->
+
+    <header class="chat-header">
+
+        <div class="chat-header-left">
+
+            <div class="chat-header-avatar">
+
+                <i class="fa-solid fa-robot"></i>
+
+            </div>
+
+
+            <div class="chat-header-text">
+
+                <strong>
+                    Asistente IA
+                </strong>
+
+                <span id="chatRoleLabel">
+                    Campus Virtual
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="chat-header-actions">
+
+            <!-- Ampliar -->
+            <button
+                class="chat-header-button"
+                id="expandChatButton"
+                type="button"
+                aria-label="Ampliar chat"
+            >
+
+                <i class="fa-solid fa-expand"></i>
+
+            </button>
+
+
+            <!-- Nueva conversación -->
+            <button
+                class="chat-header-button"
+                id="newChatButton"
+                type="button"
+                aria-label="Nueva conversación"
+            >
+
+                <i class="fa-solid fa-plus"></i>
+
+            </button>
+
+
+            <!-- Cerrar -->
+            <button
+                class="chat-header-button"
+                id="closeChatButton"
+                type="button"
+                aria-label="Cerrar chat"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =================================================
+         CONTENIDO
+    ================================================== -->
+
+    <div class="chat-body">
+
+
+        <!-- =============================================
+             BIENVENIDA
+        ============================================== -->
+
+        <section
+            class="chat-welcome"
+            id="chatWelcome"
+        >
+
+            <div class="chat-welcome-icon">
+
+                <i class="fa-solid fa-robot"></i>
+
+            </div>
+
+
+            <h2 id="chatGreeting">
+                Hola
+            </h2>
+
+
+            <p>
+                ¿En qué puedo ayudarte?
+            </p>
+
+
+            <!-- Sugerencias -->
+            <div
+                class="chat-suggestions"
+                id="chatSuggestions"
+            >
+
+                <!-- Se llenará desde chatbot.js -->
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =============================================
+             MENSAJES
+        ============================================== -->
+
+        <section
+            class="chat-messages"
+            id="chatMessages"
+        >
+
+            <!--
+                Aquí aparecerán:
+                - mensajes del usuario
+                - respuestas del chatbot
+            -->
+
+        </section>
+
+    </div>
+
+
+
+    <!-- =================================================
+         INPUT
+    ================================================== -->
+
+    <footer class="chat-footer">
+
+        <div class="chat-input-container">
+
+            <textarea
+                id="chatInput"
+                rows="1"
+                placeholder="Escribe tu pregunta..."
+                maxlength="1000"
+            ></textarea>
+
+
+            <button
+                class="chat-send-button"
+                id="chatSendButton"
+                type="button"
+                aria-label="Enviar mensaje"
+            >
+
+                <i class="fa-solid fa-paper-plane"></i>
+
+            </button>
+
+        </div>
+
+
+        <div class="chat-footer-info">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            <span id="chatPermissionText">
+                El asistente responde según los permisos de tu cuenta.
+            </span>
+
+        </div>
+
+    </footer>
+
+
+</aside>
+<script src="../assets/js/api.js"></script><script src="../assets/js/auth.js"></script><script src="../assets/js/admin.js"></script><script src="../assets/js/chatbot.js"></script></body></html>

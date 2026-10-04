@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro Académico | Asistencia IA</title>
+  <link rel="stylesheet" href="../assets/css/registro.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body class="register-page">
+  <main class="login-page">
+    <div class="login-brand-fixed">
+      <div class="login-brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+      <div><strong>ASISTENCIA IA</strong><span>Sistema Inteligente</span></div>
+    </div>
+
+    <div class="login-slogan">
+      <span>Comprometidos</span><span>con tu formación</span><div></div>
+    </div>
+
+    <section class="login-shell">
+      <section class="face-panel">
+        <div class="face-glow"></div>
+
+        <div class="register-intro-badge">
+          <i class="fa-solid fa-user-plus"></i>
+          Registro académico seguro
+        </div>
+
+        <div class="camera-zone">
+          <div class="face-circle"><i class="fa-solid fa-user-graduate"></i></div>
+        </div>
+
+        <h2>Crea tu cuenta académica</h2>
+        <p class="face-copy">Elige tu perfil y completa tus datos para ingresar al Campus Virtual.</p>
+
+        <div class="register-benefits">
+          <div class="register-benefit"><i class="fa-solid fa-shield-halved"></i><span>Cuenta protegida con Supabase Auth.</span></div>
+          <div class="register-benefit"><i class="fa-solid fa-graduation-cap"></i><span>Acceso según tu rol: estudiante o profesor.</span></div>
+          <div class="register-benefit"><i class="fa-solid fa-face-smile"></i><span>Podrás vincular reconocimiento facial posteriormente.</span></div>
+        </div>
+
+        <div class="register-note">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>Por seguridad, las cuentas de administrador no se crean desde este formulario público.</span>
+        </div>
+      </section>
+
+      <section class="form-panel">
+        <div class="form-brand">
+          <i class="fa-solid fa-graduation-cap"></i>
+          <div><strong>ASISTENCIA IA</strong><span>Registro Académico</span></div>
+        </div>
+
+        <div class="form-divider"></div>
+
+        <div class="form-title">
+          <h1>Crear cuenta</h1>
+          <p>Selecciona si eres estudiante o profesor y completa tus datos.</p>
+        </div>
+
+        <div id="registerMessage" class="register-message"></div>
+
+        <form id="registerForm">
+          <span class="register-role-label">Tipo de cuenta</span>
+
+          <div class="register-role-cards">
+            <div class="role-option">
+              <input type="radio" id="roleStudent" name="rol" value="ESTUDIANTE" checked />
+              <label for="roleStudent">
+                <i class="fa-solid fa-user-graduate"></i>
+                <span><strong>Estudiante</strong><br><small>Acceso de alumno</small></span>
+              </label>
+            </div>
+
+            <div class="role-option">
+              <input type="radio" id="roleTeacher" name="rol" value="PROFESOR" />
+              <label for="roleTeacher">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span><strong>Profesor</strong><br><small>Acceso docente</small></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="register-grid">
+            <label class="input-wrap"><i class="fa-regular fa-user"></i><input id="nombres" type="text" placeholder="Nombres" required /></label>
+            <label class="input-wrap"><i class="fa-regular fa-user"></i><input id="apellidos" type="text" placeholder="Apellidos" required /></label>
+            <label class="input-wrap"><i class="fa-regular fa-envelope"></i><input id="registerEmail" type="email" placeholder="Correo institucional" autocomplete="email" required /></label>
+            <label class="input-wrap"><i class="fa-solid fa-lock"></i><input id="registerPassword" type="password" minlength="6" placeholder="Contraseña" autocomplete="new-password" required /></label>
+          </div>
+
+          <div class="password-hint">Usa al menos 6 caracteres para tu contraseña.</div>
+
+          <div id="studentFields" class="register-fields">
+            <div class="register-grid">
+              <label class="input-wrap"><i class="fa-solid fa-id-card"></i><input id="codigoEstudiante" type="text" placeholder="Código de estudiante" /></label>
+              <label class="input-wrap"><i class="fa-solid fa-layer-group"></i><input id="ciclo" type="text" placeholder="Ciclo (ej. VI)" /></label>
+            </div>
+            <label class="input-wrap"><i class="fa-solid fa-graduation-cap"></i><input id="carrera" type="text" placeholder="Carrera" /></label>
+          </div>
+
+          <div id="teacherFields" class="register-fields hidden">
+            <div class="register-grid">
+              <label class="input-wrap"><i class="fa-solid fa-id-card"></i><input id="codigoProfesor" type="text" placeholder="Código de profesor" /></label>
+              <label class="input-wrap"><i class="fa-solid fa-book-open-reader"></i><input id="especialidad" type="text" placeholder="Especialidad" /></label>
+            </div>
+          </div>
+
+          <button id="registerSubmit" class="primary-login" type="submit">
+            <span>Crear cuenta</span><i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </form>
+
+        <div class="back-login">
+          <a href="portal_login.html"><i class="fa-solid fa-arrow-left"></i> Ya tengo una cuenta</a>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/register.js"></script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal Administrativo | Asistencia IA</title>
+  <link rel="stylesheet" href="../assets/css/portal-login.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body class="login-page">
+
+  <!-- Marca superior -->
+  <div class="login-brand-fixed">
+    <div class="login-brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+    <div>
+      <strong>ASISTENCIA IA</strong>
+      <span>Sistema Inteligente</span>
+    </div>
+  </div>
+
+  <div class="login-slogan">
+    <span>Comprometidos</span>
+    <span>con tu formación</span>
+    <div></div>
+  </div>
+
+  <!-- Card principal -->
+  <div class="login-shell">
+
+    <!-- Panel izquierdo (info admin) -->
+    <section class="login-left face-panel">
+      <div class="face-circle">
+        <i class="fa-solid fa-shield-halved" style="font-size:48px;color:#7ec8ff;"></i>
+      </div>
+      <h3 style="color:#fff;margin-top:18px;font-size:1.15rem;">Portal Administrativo</h3>
+      <p style="color:rgba(255,255,255,.85);font-size:.9rem;max-width:280px;text-align:center;margin:8px auto 0;">
+        Acceso exclusivo para personal autorizado de la institución.
+      </p>
+
+      <div class="face-stats" style="margin-top:28px;">
+        <div class="face-stat">
+          <i class="fa-solid fa-users"></i>
+          <span>Usuarios</span>
+        </div>
+        <div class="face-stat">
+          <i class="fa-solid fa-book"></i>
+          <span>Cursos</span>
+        </div>
+        <div class="face-stat">
+          <i class="fa-solid fa-clipboard-list"></i>
+          <span>Auditoría</span>
+        </div>
+      </div>
+
+      <p style="color:rgba(255,255,255,.7);font-size:.8rem;margin-top:24px;text-align:center;max-width:300px;">
+        Gestiona usuarios, profesores, alumnos, cursos y el registro de accesos.
+      </p>
+    </section>
+
+    <!-- Panel derecho (formulario) -->
+    <section class="login-right">
+      <div class="login-right-inner">
+        <div class="login-logo-row">
+          <i class="fa-solid fa-graduation-cap" style="color:#0d72f2;font-size:28px;"></i>
+          <div>
+            <strong>ASISTENCIA IA</strong>
+            <span>Sistema Inteligente</span>
+          </div>
+        </div>
+
+        <h1>Portal Administrativo</h1>
+        <p class="login-sub">Acceso solo para administradores autorizados.</p>
+
+        <form
+          id="form-login"
+          data-endpoint="/api/auth/admin/login"
+          data-destino="../admin/dashboard.html"
+          novalidate
+        >
+          <p id="mensaje" class="mensaje-error" role="alert" aria-live="polite"></p>
+
+          <div class="campo">
+            <i class="fa-regular fa-user"></i>
+            <input
+              type="text"
+              id="identificador"
+              placeholder="Usuario o correo institucional"
+              autocomplete="username"
+              required
+            />
+          </div>
+
+          <div class="campo">
+            <i class="fa-solid fa-lock"></i>
+            <input
+              type="password"
+              id="password"
+              placeholder="Contraseña"
+              autocomplete="current-password"
+              required
+            />
+            <button type="button" id="btn-ojo" class="btn-ojo" aria-label="Mostrar contraseña">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+
+          <!-- Sesión de admin siempre corta -->
+          <input type="checkbox" id="recordarme" hidden />
+
+          <button type="submit" id="btn-entrar" class="btn-primary">
+            Iniciar sesión <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </form>
+
+        <p class="login-note">
+          <i class="fa-solid fa-circle-info"></i>
+          Este acceso es exclusivo para administradores.
+        </p>
+
+        <p class="login-back">
+          <a href="../login.html">← Volver al Portal Académico</a>
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/login-form.js"></script>
+  <script>
+    // Toggle mostrar/ocultar contraseña (compatible con el diseño nuevo)
+    document.getElementById("btn-ojo")?.addEventListener("click", () => {
+      const input = document.getElementById("password");
+      const icon = document.querySelector("#btn-ojo i");
+      const mostrar = input.type === "password";
+      input.type = mostrar ? "text" : "password";
+      if (icon) {
+        icon.className = mostrar ? "fa-regular fa-eye-slash" : "fa-regular fa-eye";
+      }
+    });
+  </script>
+</body>
+</html>

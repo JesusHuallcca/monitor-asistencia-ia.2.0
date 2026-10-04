@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Acceso facial | Asistencia IA</title>
+  <link rel="stylesheet" href="../assets/css/face-login.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body>
+  <main class="face-page">
+    <section class="face-shell">
+      <div class="camera-zone">
+        <div>
+          <div class="camera-frame">
+            <div id="cameraPlaceholder" class="camera-placeholder"><i class="fa-regular fa-face-smile"></i><h3>Colócate frente a la cámara</h3><p>Tu imagen aparecerá aquí al iniciar</p></div>
+            <video id="faceVideo" autoplay playsinline muted></video>
+          </div>
+          <p><i class="fa-solid fa-camera"></i> Busca un lugar con buena iluminación</p>
+        </div>
+      </div>
+      <div class="face-content">
+        <span class="eyebrow">BIENVENIDO AL LABORATORIO</span>
+        <h1>Iniciar sesión</h1>
+        <p>Accede a tu espacio con una breve verificación facial.</p>
+        <div class="face-stats">
+          <div class="face-stat"><span>Encuadre</span><strong id="frameValue">0%</strong></div>
+          <div class="face-stat"><span>Estado</span><strong id="faceStatus">Buscando rostro</strong></div>
+          <div class="face-stat"><span>Captura</span><strong>Automática</strong></div>
+        </div>
+        <p>Esta pantalla ya enciende la cámara. La comparación biométrica se conectará después al servicio de reconocimiento facial de FastAPI.</p>
+        <button class="camera-start" id="startCamera">Iniciar cámara <i class="fa-solid fa-arrow-right"></i></button>
+        <a class="face-back" href="portal_login.html"><i class="fa-solid fa-arrow-left"></i> Volver al inicio</a>
+      </div>
+    </section>
+  </main>
+  <script>
+    document.getElementById('startCamera').addEventListener('click', async () => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({video:{facingMode:'user'},audio:false});
+        const video = document.getElementById('faceVideo');
+        video.srcObject = stream;
+        video.style.display = 'block';
+        document.getElementById('cameraPlaceholder').style.display = 'none';
+        document.getElementById('faceStatus').textContent = 'Cámara activa';
+        document.getElementById('frameValue').textContent = '100%';
+      } catch (e) {
+        document.getElementById('faceStatus').textContent = 'Permiso denegado';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal Académico | Asistencia IA</title>
+  <link rel="stylesheet" href="../assets/css/portal-login.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body data-login-mode="academic">
+  <main class="login-page">
+    <div class="login-brand-fixed">
+      <div class="login-brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+      <div>
+        <strong>ASISTENCIA IA</strong>
+        <span>Sistema Inteligente</span>
+      </div>
+    </div>
+
+    <div class="login-slogan">
+      <span>Comprometidos</span>
+      <span>con tu formación</span>
+      <div></div>
+    </div>
+
+    <section class="login-shell">
+      <section class="face-panel">
+        <div class="face-glow"></div>
+
+        <div class="camera-zone" id="cameraZone">
+          <video id="faceVideo" autoplay muted playsinline></video>
+          <canvas id="faceCanvas"></canvas>
+          <div class="face-circle" id="cameraPlaceholder">
+            <i class="fa-regular fa-face-smile"></i>
+          </div>
+        </div>
+
+        <h2>Colócate frente a la cámara</h2>
+        <p class="face-copy">Tu imagen aparecerá aquí al iniciar el reconocimiento facial.</p>
+
+        <div class="face-status-grid">
+          <article>
+            <span><i class="fa-solid fa-camera-retro"></i> ENCUADRE</span>
+            <strong id="framePercent">0%</strong>
+          </article>
+          <article>
+            <span><i class="fa-regular fa-user"></i> ESTADO</span>
+            <strong id="faceStatus">Buscando rostro</strong>
+          </article>
+          <article>
+            <span><i class="fa-solid fa-camera"></i> CAPTURA</span>
+            <strong>Automática</strong>
+          </article>
+        </div>
+
+        <p class="face-description">
+          Tomaremos una foto de tu rostro y se validará automáticamente cuando el encuadre sea correcto.
+        </p>
+
+        <button class="camera-button" id="startCameraButton" type="button">
+          <i class="fa-solid fa-camera"></i>
+          <span>Iniciar cámara</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+        <div class="face-tip">
+          <i class="fa-regular fa-lightbulb"></i>
+          <span>Busca un lugar bien iluminado y mantén tu rostro dentro del círculo.</span>
+        </div>
+      </section>
+
+      <section class="form-panel">
+        <div class="form-brand">
+          <i class="fa-solid fa-graduation-cap"></i>
+          <div>
+            <strong>ASISTENCIA IA</strong>
+            <span>Sistema Inteligente</span>
+          </div>
+        </div>
+
+        <div class="form-divider"></div>
+
+        <div class="form-title">
+          <h1>Portal Académico</h1>
+          <p>Accede al sistema de asistencia con tu cuenta de estudiante o profesor.</p>
+        </div>
+
+        <div id="loginError" class="login-error"></div>
+
+        <form id="loginForm" class="login-form">
+          <label class="input-wrap">
+            <i class="fa-regular fa-user"></i>
+            <input id="email" type="email" autocomplete="username" placeholder="Usuario o correo institucional" required />
+          </label>
+
+          <label class="input-wrap">
+            <i class="fa-solid fa-lock"></i>
+            <input id="password" type="password" autocomplete="current-password" placeholder="Contraseña" required />
+            <button class="password-toggle" id="togglePassword" type="button" aria-label="Mostrar contraseña">
+              <i class="fa-regular fa-eye-slash"></i>
+            </button>
+          </label>
+
+          <div class="login-options">
+            <label class="remember"><input id="rememberMe" type="checkbox" /> Recordarme</label>
+            <a href="#">¿Olvidaste tu contraseña?</a>
+          </div>
+
+          <button id="loginSubmit" class="primary-login" type="submit">
+            <span>Iniciar sesión</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </form>
+
+        <div class="divider">o</div>
+
+        <a class="face-login" href="face_login.html">
+          <i class="fa-solid fa-expand"></i>
+          Iniciar con reconocimiento facial
+        </a>
+
+
+      </section>
+    </section>
+  </main>
+
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/login.js"></script>
+  <script src="../assets/js/face-login-preview.js"></script>
+</body>
+</html>

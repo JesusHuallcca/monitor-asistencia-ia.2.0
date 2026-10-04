@@ -1,0 +1,2132 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>
+    Dashboard Estudiante | Asistencia IA
+  </title>
+
+
+  <!-- =====================================================
+       CSS
+  ====================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="../assets/css/global.css"
+  />
+
+  <link
+    rel="stylesheet"
+    href="../assets/css/estudiante.css?v=2"
+  />
+
+  <link
+    rel="stylesheet"
+    href="../assets/css/chatbot.css"
+  />
+
+
+  <!-- FONT AWESOME -->
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+
+</head>
+
+
+<body>
+
+
+  <div class="app">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+
+      <!-- LOGO -->
+
+      <div class="brand">
+
+        <div class="brand-icon">
+
+          <i class="fa-solid fa-graduation-cap"></i>
+
+        </div>
+
+
+        <div>
+
+          <h2>
+            ASISTENCIA IA
+          </h2>
+
+          <span>
+            Campus Virtual
+          </span>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- =================================================
+           MENÚ
+      ================================================== -->
+
+      <nav class="menu">
+
+
+        <!-- INICIO -->
+
+        <a
+          href="#"
+          class="menu-item active"
+          data-section="inicio"
+        >
+
+          <i class="fa-solid fa-house"></i>
+
+          <span>
+            Inicio
+          </span>
+
+        </a>
+
+
+
+        <!-- MIS CURSOS -->
+
+        <a
+          href="#"
+          class="menu-item"
+          data-section="mis-cursos"
+        >
+
+          <i class="fa-solid fa-book-open"></i>
+
+          <span>
+            Mis cursos
+          </span>
+
+        </a>
+
+
+
+        <!-- CALENDARIO -->
+
+        <a
+          href="#"
+          class="menu-item"
+          data-section="calendario"
+        >
+
+          <i class="fa-regular fa-calendar-days"></i>
+
+          <span>
+            Calendario
+          </span>
+
+        </a>
+
+
+
+        <!-- MENSAJES -->
+
+        <a
+          href="#"
+          class="menu-item"
+          data-section="mensajes"
+        >
+
+          <i class="fa-regular fa-envelope"></i>
+
+          <span>
+            Mensajes
+          </span>
+
+          <span class="badge">
+            2
+          </span>
+
+        </a>
+
+
+
+        <!-- CALIFICACIONES -->
+
+        <a
+          href="#"
+          class="menu-item"
+          data-section="calificaciones"
+        >
+
+          <i class="fa-solid fa-chart-simple"></i>
+
+          <span>
+            Calificaciones
+          </span>
+
+        </a>
+
+
+
+        <div class="menu-divider"></div>
+
+
+
+        <!-- MI ASISTENCIA -->
+
+        <a
+          href="#"
+          class="menu-item"
+          data-section="asistencia"
+        >
+
+          <i class="fa-solid fa-clipboard-check"></i>
+
+          <span>
+            Control de asistencia
+          </span>
+
+        </a>
+
+
+
+        <!-- MIS ESTADÍSTICAS -->
+
+        <a
+          href="#"
+          class="menu-item"
+          data-section="estadisticas"
+        >
+
+          <i class="fa-solid fa-chart-column"></i>
+
+          <span>
+            Mis estadísticas
+          </span>
+
+        </a>
+
+
+
+        <!-- ASISTENTE IA -->
+
+        <a
+          href="#"
+          class="menu-item"
+          id="openChatMenu"
+        >
+
+          <i class="fa-solid fa-robot"></i>
+
+          <span>
+            Asistente IA
+          </span>
+
+        </a>
+
+
+
+        <div class="menu-divider"></div>
+
+
+
+        <!-- PERFIL -->
+
+        <a
+          href="#"
+          class="menu-item"
+          data-section="mi-perfil"
+        >
+
+          <i class="fa-regular fa-user"></i>
+
+          <span>
+            Mi perfil
+          </span>
+
+        </a>
+
+
+
+        <!-- CERRAR SESIÓN -->
+
+        <a
+          href="#"
+          class="menu-item"
+          id="logoutLink"
+        >
+
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+
+          <span>
+            Cerrar sesión
+          </span>
+
+        </a>
+
+
+      </nav>
+
+
+
+      <!-- =================================================
+           CAMPUS
+      ================================================== -->
+
+      <div class="sidebar-campus">
+
+        <img
+          src="../assets/img/fondos/campus.jpg"
+          alt="Campus"
+        />
+
+      </div>
+
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+    ====================================================== -->
+
+    <main class="main">
+
+
+      <!-- =================================================
+           TOPBAR
+      ================================================== -->
+
+      <header class="topbar">
+
+
+        <div class="topbar-left">
+
+
+          <!-- MENU RESPONSIVE -->
+
+          <button
+            class="menu-button"
+            id="menuButton"
+            type="button"
+          >
+
+            <i class="fa-solid fa-bars"></i>
+
+          </button>
+
+
+
+          <!-- BUSCADOR GENERAL -->
+
+          <div class="search">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+              type="text"
+              id="globalSearch"
+              placeholder="Buscar cursos, profesores o contenidos..."
+            />
+
+          </div>
+
+        </div>
+
+
+
+        <div class="topbar-right">
+
+
+          <!-- NOTIFICACIONES -->
+
+          <button
+            class="notification"
+            type="button"
+          >
+
+            <i class="fa-regular fa-bell"></i>
+
+            <span>
+              3
+            </span>
+
+          </button>
+
+
+
+          <!-- PERFIL -->
+
+          <div class="profile">
+
+
+            <img
+              src="../assets/img/usuarios/profesor.jpg"
+              alt="Foto del profesor"
+            />
+
+
+            <div>
+
+              <strong data-auth-name>
+                Profesor
+              </strong>
+
+              <small data-auth-role>
+                Profesor
+              </small>
+
+            </div>
+
+
+            <i class="fa-solid fa-chevron-down"></i>
+
+          </div>
+
+        </div>
+
+      </header>
+
+
+
+      <!-- =================================================
+           DASHBOARD
+      ================================================== -->
+
+      <!-- INICIO -->
+      <section class="content spa-section active" id="section-inicio" data-section="inicio">
+
+
+        <!-- TÍTULO -->
+
+        <div class="page-title">
+
+          <h1>
+            Mis cursos
+          </h1>
+
+          <p>
+            Accede a tus cursos, revisa tu asistencia
+            y consulta tus próximas actividades.
+          </p>
+
+        </div>
+
+
+
+        <div class="dashboard-layout">
+
+
+          <!-- =================================================
+               COLUMNA CURSOS
+          ================================================== -->
+
+          <section
+            class="courses-column"
+            id="cursos"
+          >
+
+
+            <!-- =============================================
+                 FILTROS
+            ============================================== -->
+
+            <div class="filters">
+
+
+              <!-- PERIODO -->
+
+              <div class="filter-group">
+
+                <label>
+                  Período académico
+                </label>
+
+                <select id="periodFilter">
+
+                  <option value="2026-2">
+                    2026-2
+                  </option>
+
+                  <option value="2026-1">
+                    2026-1
+                  </option>
+
+                </select>
+
+              </div>
+
+
+
+              <!-- ESTADO -->
+
+              <div class="filter-group">
+
+                <label>
+                  Estado del curso
+                </label>
+
+                <select id="statusFilter">
+
+                  <option value="todos">
+                    Todos
+                  </option>
+
+                  <option value="activo">
+                    En curso
+                  </option>
+
+                  <option value="finalizado">
+                    Finalizados
+                  </option>
+
+                </select>
+
+              </div>
+
+
+
+              <!-- BUSCAR -->
+
+              <div class="course-search">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                  type="text"
+                  id="courseSearch"
+                  placeholder="Buscar curso..."
+                />
+
+              </div>
+
+            </div>
+
+
+
+            <p class="course-count">
+              4 cursos encontrados
+            </p>
+
+
+
+            <!-- =================================================
+                 TARJETAS DE CURSOS
+            ================================================== -->
+
+            <div class="courses-grid">
+
+
+
+              <!-- =================================================
+                   PYTHON
+              ================================================== -->
+
+              <article
+                class="course-card"
+                data-name="programación en python"
+              >
+
+
+                <div class="course-image">
+
+
+                  <img
+                    src="../assets/img/cursos/python.jpg"
+                    alt="Programación en Python"
+                  />
+
+
+                  <span class="status active">
+
+                    En curso
+
+                  </span>
+
+                </div>
+
+
+
+                <div class="course-body">
+
+
+                  <div class="course-heading">
+
+
+                    <div>
+
+                      <h3>
+                        Programación en Python
+                      </h3>
+
+                      <span>
+                        INF-101 | Sección 01
+                      </span>
+
+                    </div>
+
+
+                    <button type="button">
+
+                      <i class="fa-solid fa-ellipsis-vertical"></i>
+
+                    </button>
+
+                  </div>
+
+
+
+                  <div class="course-details">
+
+
+                    <p>
+
+                      <i class="fa-solid fa-user-tie"></i>
+
+                      Prof. Carlos Mendoza
+
+                    </p>
+
+
+                    <p>
+
+                      <i class="fa-regular fa-calendar"></i>
+
+                      Lun - Mié - Vie
+
+                    </p>
+
+
+                    <p>
+
+                      <i class="fa-regular fa-clock"></i>
+
+                      14:00 - 16:00
+
+                    </p>
+
+                  </div>
+
+
+
+                  <div class="attendance-row">
+
+                    <span>
+                      Mi asistencia
+                    </span>
+
+                    <strong>
+                      92%
+                    </strong>
+
+                  </div>
+
+
+
+                  <div class="progress">
+
+                    <div style="width: 92%"></div>
+
+                  </div>
+
+
+
+                  <a
+                    href="curso.html?id=1"
+                    class="course-link"
+                  >
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                    Ir al curso
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                  </a>
+
+                </div>
+
+              </article>
+
+
+
+              <!-- =================================================
+                   INTELIGENCIA ARTIFICIAL
+              ================================================== -->
+
+              <article
+                class="course-card"
+                data-name="inteligencia artificial"
+              >
+
+
+                <div class="course-image">
+
+
+                  <img
+                    src="../assets/img/cursos/ia.jpg"
+                    alt="Inteligencia Artificial"
+                  />
+
+
+                  <span class="status active">
+
+                    En curso
+
+                  </span>
+
+                </div>
+
+
+
+                <div class="course-body">
+
+
+                  <div class="course-heading">
+
+
+                    <div>
+
+                      <h3>
+                        Inteligencia Artificial
+                      </h3>
+
+                      <span>
+                        INF-102 | Sección 01
+                      </span>
+
+                    </div>
+
+
+                    <button type="button">
+
+                      <i class="fa-solid fa-ellipsis-vertical"></i>
+
+                    </button>
+
+                  </div>
+
+
+
+                  <div class="course-details">
+
+
+                    <p>
+
+                      <i class="fa-solid fa-user-tie"></i>
+
+                      Prof. Ana Torres
+
+                    </p>
+
+
+                    <p>
+
+                      <i class="fa-regular fa-calendar"></i>
+
+                      Mar - Jue
+
+                    </p>
+
+
+                    <p>
+
+                      <i class="fa-regular fa-clock"></i>
+
+                      10:00 - 12:00
+
+                    </p>
+
+                  </div>
+
+
+
+                  <div class="attendance-row">
+
+                    <span>
+                      Mi asistencia
+                    </span>
+
+                    <strong>
+                      88%
+                    </strong>
+
+                  </div>
+
+
+
+                  <div class="progress">
+
+                    <div style="width: 88%"></div>
+
+                  </div>
+
+
+
+                  <a
+                    href="curso.html?id=2"
+                    class="course-link"
+                  >
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                    Ir al curso
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                  </a>
+
+                </div>
+
+              </article>
+
+
+
+              <!-- =================================================
+                   ESTADÍSTICA
+              ================================================== -->
+
+              <article
+                class="course-card"
+                data-name="estadística para la gestión"
+              >
+
+
+                <div class="course-image">
+
+
+                  <img
+                    src="../assets/img/cursos/estadistica.jpg"
+                    alt="Estadística"
+                  />
+
+
+                  <span class="status active">
+
+                    En curso
+
+                  </span>
+
+                </div>
+
+
+
+                <div class="course-body">
+
+
+                  <div class="course-heading">
+
+
+                    <div>
+
+                      <h3>
+                        Estadística para la Gestión
+                      </h3>
+
+                      <span>
+                        MAT-201 | Sección 02
+                      </span>
+
+                    </div>
+
+
+                    <button type="button">
+
+                      <i class="fa-solid fa-ellipsis-vertical"></i>
+
+                    </button>
+
+                  </div>
+
+
+
+                  <div class="course-details">
+
+
+                    <p>
+
+                      <i class="fa-solid fa-user-tie"></i>
+
+                      Prof. Luis Ramírez
+
+                    </p>
+
+
+                    <p>
+
+                      <i class="fa-regular fa-calendar"></i>
+
+                      Lun - Mié
+
+                    </p>
+
+
+                    <p>
+
+                      <i class="fa-regular fa-clock"></i>
+
+                      08:00 - 10:00
+
+                    </p>
+
+                  </div>
+
+
+
+                  <div class="attendance-row">
+
+                    <span>
+                      Mi asistencia
+                    </span>
+
+                    <strong>
+                      75%
+                    </strong>
+
+                  </div>
+
+
+
+                  <div class="progress warning">
+
+                    <div style="width: 75%"></div>
+
+                  </div>
+
+
+
+                  <a
+                    href="curso.html?id=3"
+                    class="course-link"
+                  >
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                    Ir al curso
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                  </a>
+
+                </div>
+
+              </article>
+
+
+
+              <!-- =================================================
+                   CIBERSEGURIDAD
+              ================================================== -->
+
+              <article
+                class="course-card"
+                data-name="ciberseguridad"
+              >
+
+
+                <div class="course-image">
+
+
+                  <img
+                    src="../assets/img/cursos/ciberseguridad.jpg"
+                    alt="Ciberseguridad"
+                  />
+
+
+                  <span class="status active">
+
+                    En curso
+
+                  </span>
+
+                </div>
+
+
+
+                <div class="course-body">
+
+
+                  <div class="course-heading">
+
+
+                    <div>
+
+                      <h3>
+                        Ciberseguridad
+                      </h3>
+
+                      <span>
+                        SEG-101 | Sección 01
+                      </span>
+
+                    </div>
+
+
+                    <button type="button">
+
+                      <i class="fa-solid fa-ellipsis-vertical"></i>
+
+                    </button>
+
+                  </div>
+
+
+
+                  <div class="course-details">
+
+
+                    <p>
+
+                      <i class="fa-solid fa-user-tie"></i>
+
+                      Prof. Patricia Rojas
+
+                    </p>
+
+
+                    <p>
+
+                      <i class="fa-regular fa-calendar"></i>
+
+                      Mar - Jue
+
+                    </p>
+
+
+                    <p>
+
+                      <i class="fa-regular fa-clock"></i>
+
+                      16:00 - 18:00
+
+                    </p>
+
+                  </div>
+
+
+
+                  <div class="attendance-row">
+
+                    <span>
+                      Mi asistencia
+                    </span>
+
+                    <strong>
+                      90%
+                    </strong>
+
+                  </div>
+
+
+
+                  <div class="progress">
+
+                    <div style="width: 90%"></div>
+
+                  </div>
+
+
+
+                  <a
+                    href="curso.html?id=4"
+                    class="course-link"
+                  >
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                    Ir al curso
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                  </a>
+
+                </div>
+
+              </article>
+
+
+            </div>
+
+          </section>
+
+
+
+          <!-- =================================================
+               PANEL DERECHO
+          ================================================== -->
+
+          <aside class="right-column">
+
+
+            <!-- =================================================
+                 TAREAS
+            ================================================== -->
+
+            <section class="panel-card">
+
+
+              <div class="panel-title">
+
+
+                <div>
+
+                  <i class="fa-regular fa-calendar-check"></i>
+
+                  <h2>
+                    Tareas pendientes
+                  </h2>
+
+                </div>
+
+
+                <a href="#">
+                  Ver todas
+                </a>
+
+              </div>
+
+
+
+              <!-- TAREA 1 -->
+
+              <div class="task">
+
+
+                <div class="task-icon red">
+
+                  <i class="fa-solid fa-pen"></i>
+
+                </div>
+
+
+                <div>
+
+                  <strong>
+                    Trabajo grupal - Módulo 2
+                  </strong>
+
+                  <span>
+                    Programación en Python
+                  </span>
+
+                </div>
+
+
+                <b>
+                  Hoy
+                </b>
+
+              </div>
+
+
+
+              <!-- TAREA 2 -->
+
+              <div class="task">
+
+
+                <div class="task-icon purple">
+
+                  <i class="fa-regular fa-file-lines"></i>
+
+                </div>
+
+
+                <div>
+
+                  <strong>
+                    Cuestionario Semana 4
+                  </strong>
+
+                  <span>
+                    Estadística para la Gestión
+                  </span>
+
+                </div>
+
+
+                <b>
+                  29 sep
+                </b>
+
+              </div>
+
+
+
+              <!-- TAREA 3 -->
+
+              <div class="task">
+
+
+                <div class="task-icon blue">
+
+                  <i class="fa-regular fa-file-lines"></i>
+
+                </div>
+
+
+                <div>
+
+                  <strong>
+                    Informe de práctica 03
+                  </strong>
+
+                  <span>
+                    Inteligencia Artificial
+                  </span>
+
+                </div>
+
+
+                <b>
+                  30 sep
+                </b>
+
+              </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 PRÓXIMAS CLASES
+            ================================================== -->
+
+            <section class="panel-card">
+
+
+              <div class="panel-title">
+
+
+                <div>
+
+                  <i class="fa-regular fa-calendar-days"></i>
+
+                  <h2>
+                    Próximas clases
+                  </h2>
+
+                </div>
+
+
+                <a href="#">
+                  Ver calendario
+                </a>
+
+              </div>
+
+
+
+              <!-- CLASE 1 -->
+
+              <div class="class-item">
+
+
+                <div class="date-box blue">
+
+                  HOY
+
+                </div>
+
+
+                <div>
+
+                  <strong>
+                    Programación en Python
+                  </strong>
+
+                  <span>
+                    14:00 - 16:00
+                  </span>
+
+                </div>
+
+
+                <span class="class-room">
+                  Aula 301
+                </span>
+
+              </div>
+
+
+
+              <!-- CLASE 2 -->
+
+              <div class="class-item">
+
+
+                <div class="date-box purple">
+
+                  MAÑ
+
+                </div>
+
+
+                <div>
+
+                  <strong>
+                    Estadística para la Gestión
+                  </strong>
+
+                  <span>
+                    08:00 - 10:00
+                  </span>
+
+                </div>
+
+
+                <span class="class-room">
+                  Aula 205
+                </span>
+
+              </div>
+
+
+
+              <!-- CLASE 3 -->
+
+              <div class="class-item">
+
+
+                <div class="date-box orange">
+
+                  30
+
+                </div>
+
+
+                <div>
+
+                  <strong>
+                    Inteligencia Artificial
+                  </strong>
+
+                  <span>
+                    10:00 - 12:00
+                  </span>
+
+                </div>
+
+
+                <span class="class-room">
+                  Aula 402
+                </span>
+
+              </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 CALIFICACIONES RECIENTES
+            ================================================== -->
+
+            <section class="panel-card">
+
+
+              <div class="panel-title">
+
+
+                <div>
+
+                  <i class="fa-solid fa-chart-line"></i>
+
+                  <h2>
+                    Calificaciones recientes
+                  </h2>
+
+                </div>
+
+
+                <a href="#">
+                  Ver todas
+                </a>
+
+              </div>
+
+
+
+              <!-- NOTA 1 -->
+
+              <div class="grade-row">
+
+
+                <div>
+
+                  <strong>
+                    Práctica 01
+                  </strong>
+
+                  <span>
+                    Programación en Python
+                  </span>
+
+                </div>
+
+
+                <b>
+                  18
+                </b>
+
+              </div>
+
+
+
+              <!-- NOTA 2 -->
+
+              <div class="grade-row">
+
+
+                <div>
+
+                  <strong>
+                    Cuestionario 02
+                  </strong>
+
+                  <span>
+                    Inteligencia Artificial
+                  </span>
+
+                </div>
+
+
+                <b>
+                  17
+                </b>
+
+              </div>
+
+            </section>
+
+
+          </aside>
+
+
+        </div>
+
+      </section>
+
+      <!-- MIS CURSOS (DETALLE) -->
+      <section class="content spa-section" id="section-mis-cursos" data-section="mis-cursos" style="display:none">
+        <div class="page-title">
+          <h1>Cursos Asignados</h1>
+          <p>Gestión y administración de asignaturas a tu cargo en el ciclo 2026-2.</p>
+        </div>
+        <div class="courses-grid" style="margin-top:20px;">
+          <article class="course-card">
+            <div class="course-image"><img src="../assets/img/cursos/python.jpg" alt="Python"/><span class="status active">En curso</span></div>
+            <div class="course-body">
+              <div class="course-heading"><div><h3>Programación en Python</h3><span>INF-101 | Sec 01 · 28 alumnos</span></div></div>
+              <div class="course-details"><p><i class="fa-regular fa-calendar"></i> Lun - Mié - Vie 14:00-16:00</p><p><i class="fa-solid fa-location-dot"></i> Lab 301</p></div>
+              <div class="course-progress-row"><span>Asistencia Grupal</span><strong>91.5%</strong></div>
+              <div class="progress-track"><div class="progress-bar" style="width:91.5%"></div></div>
+              <a href="#" class="course-link" onclick="document.querySelector('[data-section=asistencia]').click()"><i class="fa-solid fa-clipboard-user"></i> Tomar Asistencia <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+          </article>
+          <article class="course-card">
+            <div class="course-image"><img src="../assets/img/cursos/ia.jpg" alt="IA"/><span class="status active">En curso</span></div>
+            <div class="course-body">
+              <div class="course-heading"><div><h3>Inteligencia Artificial</h3><span>INF-102 | Sec 01 · 32 alumnos</span></div></div>
+              <div class="course-details"><p><i class="fa-regular fa-calendar"></i> Mar - Jue 10:00-12:00</p><p><i class="fa-solid fa-location-dot"></i> Aula 402</p></div>
+              <div class="course-progress-row"><span>Asistencia Grupal</span><strong>88.0%</strong></div>
+              <div class="progress-track"><div class="progress-bar" style="width:88%"></div></div>
+              <a href="#" class="course-link" onclick="document.querySelector('[data-section=asistencia]').click()"><i class="fa-solid fa-clipboard-user"></i> Tomar Asistencia <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+          </article>
+          <article class="course-card">
+            <div class="course-image"><img src="../assets/img/cursos/estadistica.jpg" alt="Estadística"/><span class="status active">En curso</span></div>
+            <div class="course-body">
+              <div class="course-heading"><div><h3>Estadística para la Gestión</h3><span>MAT-201 | Sec 02 · 25 alumnos</span></div></div>
+              <div class="course-details"><p><i class="fa-regular fa-calendar"></i> Lun - Mié 08:00-10:00</p><p><i class="fa-solid fa-location-dot"></i> Aula 205</p></div>
+              <div class="course-progress-row"><span>Asistencia Grupal</span><strong>79.2%</strong></div>
+              <div class="progress-track"><div class="progress-bar" style="width:79.2%; background:var(--orange)"></div></div>
+              <a href="#" class="course-link" onclick="document.querySelector('[data-section=asistencia]').click()"><i class="fa-solid fa-clipboard-user"></i> Tomar Asistencia <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+          </article>
+          <article class="course-card">
+            <div class="course-image"><img src="../assets/img/cursos/ciberseguridad.jpg" alt="Ciberseg."/><span class="status active">En curso</span></div>
+            <div class="course-body">
+              <div class="course-heading"><div><h3>Ciberseguridad</h3><span>SEG-101 | Sec 01 · 27 alumnos</span></div></div>
+              <div class="course-details"><p><i class="fa-regular fa-calendar"></i> Mar - Jue 16:00-18:00</p><p><i class="fa-solid fa-location-dot"></i> Lab Ciberseg.</p></div>
+              <div class="course-progress-row"><span>Asistencia Grupal</span><strong>94.0%</strong></div>
+              <div class="progress-track"><div class="progress-bar" style="width:94%; background:var(--green)"></div></div>
+              <a href="#" class="course-link" onclick="document.querySelector('[data-section=asistencia]').click()"><i class="fa-solid fa-clipboard-user"></i> Tomar Asistencia <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- CALENDARIO -->
+      <section class="content spa-section" id="section-calendario" data-section="calendario" style="display:none">
+        <div class="page-title">
+          <h1>Calendario Académico</h1>
+          <p>Fechas de sesiones, exámenes parciales y entrega de actas de notas.</p>
+        </div>
+        <div class="spa-card" style="margin-top:20px;">
+          <div class="cal-events">
+            <h3 style="margin-bottom:14px;font-size:15px;color:#0b2550">Cronograma de Clases y Evaluaciones</h3>
+            <div class="cal-event-list">
+              <div class="cal-event-item blue"><span class="cal-dot"></span><div><strong>Sesión de Laboratorio 05 - Programación en Python</strong><span>Hoy · 14:00 - 16:00 · Lab 301</span></div></div>
+              <div class="cal-event-item purple"><span class="cal-dot"></span><div><strong>Teoría: Redes Convolucionales - Inteligencia Artificial</strong><span>Mañana · 10:00 - 12:00 · Aula 402</span></div></div>
+              <div class="cal-event-item orange"><span class="cal-dot"></span><div><strong>Examen Parcial - Estadística para la Gestión</strong><span>Viernes 10 Oct · 08:00 - 10:00 · Aula 205</span></div></div>
+              <div class="cal-event-item green"><span class="cal-dot"></span><div><strong>Cierre y Registro de Actas Parciales en el Sistema</strong><span>15 Oct · Fecha límite 23:59</span></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MENSAJES -->
+      <section class="content spa-section" id="section-mensajes" data-section="mensajes" style="display:none">
+        <div class="page-title">
+          <h1>Bandeja de Mensajes</h1>
+          <p>Comunicaciones con estudiantes, delegados y coordinación docente.</p>
+        </div>
+        <div class="spa-card msg-layout" style="margin-top:20px;">
+          <div class="msg-list">
+            <div class="msg-item unread" id="msg-1">
+              <img src="../assets/img/usuarios/alumno.jpg" alt="" class="msg-avatar"/>
+              <div class="msg-preview"><strong>Jakelin Cullampe (Delegada)</strong><p>Profesor, sobre las pautas del proyecto de Python...</p><span>Hace 1 hora</span></div>
+              <span class="msg-badge">1</span>
+            </div>
+            <div class="msg-item unread" id="msg-2">
+              <img src="../assets/img/usuarios/alumno.jpg" alt="" class="msg-avatar"/>
+              <div class="msg-preview"><strong>Manuel Rojas (Estudiante)</strong><p>Justificación médica de inasistencia del 01/10...</p><span>Hace 4 horas</span></div>
+              <span class="msg-badge">1</span>
+            </div>
+            <div class="msg-item" id="msg-3">
+              <img src="../assets/img/usuarios/profesor.jpg" alt="" class="msg-avatar"/>
+              <div class="msg-preview"><strong>Coordinación Académica</strong><p>Recordatorio de registro de notas parciales ciclo 2026-2</p><span>Ayer</span></div>
+            </div>
+          </div>
+          <div class="msg-detail">
+            <div class="msg-detail-empty" id="msgEmpty"><i class="fa-regular fa-envelope"></i><p>Selecciona un mensaje para ver los detalles</p></div>
+            <div id="msgContent" style="display:none">
+              <div class="msg-detail-header"><img src="../assets/img/usuarios/alumno.jpg" id="msgAvatar" alt=""/><div><strong id="msgFrom">Jakelin Cullampe</strong><span id="msgTime">Hoy a las 11:30 AM</span></div></div>
+              <div class="msg-detail-body" id="msgBody">Buenos días profesor Carlos. Quería consultar si en el proyecto final de Python se podrá utilizar FastAPI junto con SQLite para el backend o si es obligatorio usar PostgreSQL. Muchas gracias.</div>
+              <div class="msg-reply"><textarea placeholder="Escribe tu respuesta al estudiante..."></textarea><button type="button"><i class="fa-solid fa-paper-plane"></i> Responder</button></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CALIFICACIONES -->
+      <section class="content spa-section" id="section-calificaciones" data-section="calificaciones" style="display:none">
+        <div class="page-title">
+          <h1>Registro de Calificaciones</h1>
+          <p>Planilla de notas de estudiantes por curso del período actual.</p>
+        </div>
+        <div class="spa-card" style="margin-top:20px;">
+          <div class="attendance-table-header">
+            <div class="spa-card-title"><i class="fa-solid fa-chart-simple"></i> Planilla de Evaluaciones - Programación en Python (INF-101)</div>
+            <div class="attendance-filters">
+              <button type="button" class="btn-ask-ai" style="width:auto;padding:8px 16px;margin:0;"><i class="fa-solid fa-floppy-disk"></i> Guardar Notas</button>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="attendance-table">
+              <thead>
+                <tr><th>Código</th><th>Estudiante</th><th>Práctica 01</th><th>Cuestionario 01</th><th>Parcial</th><th>Promedio</th><th>Estado</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>EST-2026-001</td><td>Jakelin Cullampe</td><td><strong>18</strong></td><td><strong>17</strong></td><td><strong>19</strong></td><td class="grade-high">18.0</td><td><span class="status-pill pill-presente">Aprobado</span></td></tr>
+                <tr><td>EST-2026-002</td><td>Manuel Rojas</td><td><strong>15</strong></td><td><strong>14</strong></td><td><strong>16</strong></td><td class="grade-high">15.0</td><td><span class="status-pill pill-presente">Aprobado</span></td></tr>
+                <tr><td>EST-2026-003</td><td>Sofia Quispe</td><td><strong>12</strong></td><td><strong>11</strong></td><td><strong>13</strong></td><td class="grade-mid">12.0</td><td><span class="status-pill pill-tarde">Regular</span></td></tr>
+                <tr><td>EST-2026-004</td><td>Diego Mendoza</td><td><strong>08</strong></td><td><strong>10</strong></td><td><strong>09</strong></td><td class="grade-low">09.0</td><td><span class="status-pill pill-falta">Desaprobado</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTROL DE ASISTENCIA -->
+      <section class="content spa-section" id="section-asistencia" data-section="asistencia" style="display:none">
+        <div class="page-title">
+          <h1>Control de Asistencia de Alumnos</h1>
+          <p>Pase de lista presencial y validación automática mediante Reconocimiento Facial IA.</p>
+        </div>
+
+        <div class="attendance-kpi-grid">
+          <div class="spa-card kpi-item border-blue">
+            <div class="kpi-icon-box"><i class="fa-solid fa-users"></i></div>
+            <div class="kpi-info"><span>Matriculados</span><strong>28</strong><small>Sec. 01 Python</small></div>
+          </div>
+          <div class="spa-card kpi-item border-green">
+            <div class="kpi-icon-box"><i class="fa-solid fa-user-check"></i></div>
+            <div class="kpi-info"><span>Presentes Hoy</span><strong style="color:var(--green)">25</strong><small>89.3% del aula</small></div>
+          </div>
+          <div class="spa-card kpi-item border-orange">
+            <div class="kpi-icon-box"><i class="fa-solid fa-clock"></i></div>
+            <div class="kpi-info"><span>Tardanzas</span><strong style="color:var(--orange)">2</strong><small>Registro facial</small></div>
+          </div>
+          <div class="spa-card kpi-item border-red">
+            <div class="kpi-icon-box"><i class="fa-solid fa-user-xmark"></i></div>
+            <div class="kpi-info"><span>Inasistencias</span><strong style="color:var(--red)">1</strong><small>Sin justificar</small></div>
+          </div>
+        </div>
+
+        <div class="spa-card" style="margin-top:20px;">
+          <div class="attendance-table-header">
+            <div class="spa-card-title"><i class="fa-solid fa-camera"></i> Lista de Asistencia de Hoy · Sesión 14:00 - 16:00</div>
+            <div class="attendance-filters">
+              <button type="button" class="btn-ask-ai" style="width:auto;padding:8px 16px;margin:0;"><i class="fa-solid fa-face-smile"></i> Iniciar Reconocimiento IA</button>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="attendance-table">
+              <thead>
+                <tr><th>Foto</th><th>Código</th><th>Estudiante</th><th>Hora Registro</th><th>Método</th><th>Estado</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><img src="../assets/img/usuarios/alumno.jpg" style="width:32px;height:32px;border-radius:50%" alt=""/></td>
+                  <td>EST-2026-001</td>
+                  <td><strong>Jakelin Cullampe</strong></td>
+                  <td>14:02:18</td>
+                  <td><span class="badge-modalidad"><i class="fa-solid fa-camera"></i> Facial IA</span></td>
+                  <td><span class="status-pill pill-presente"><i class="fa-solid fa-check"></i> Presente</span></td>
+                </tr>
+                <tr>
+                  <td><img src="../assets/img/usuarios/alumno.jpg" style="width:32px;height:32px;border-radius:50%" alt=""/></td>
+                  <td>EST-2026-002</td>
+                  <td><strong>Manuel Rojas</strong></td>
+                  <td>14:04:45</td>
+                  <td><span class="badge-modalidad"><i class="fa-solid fa-camera"></i> Facial IA</span></td>
+                  <td><span class="status-pill pill-presente"><i class="fa-solid fa-check"></i> Presente</span></td>
+                </tr>
+                <tr>
+                  <td><img src="../assets/img/usuarios/alumno.jpg" style="width:32px;height:32px;border-radius:50%" alt=""/></td>
+                  <td>EST-2026-003</td>
+                  <td><strong>Sofia Quispe</strong></td>
+                  <td>14:18:22</td>
+                  <td><span class="badge-modalidad"><i class="fa-solid fa-user-pen"></i> Manual</span></td>
+                  <td><span class="status-pill pill-tarde"><i class="fa-solid fa-clock"></i> Tardanza</span></td>
+                </tr>
+                <tr>
+                  <td><img src="../assets/img/usuarios/alumno.jpg" style="width:32px;height:32px;border-radius:50%" alt=""/></td>
+                  <td>EST-2026-004</td>
+                  <td><strong>Diego Mendoza</strong></td>
+                  <td>—</td>
+                  <td><span class="badge-modalidad">No registrado</span></td>
+                  <td><span class="status-pill pill-falta"><i class="fa-solid fa-xmark"></i> Falta</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- MIS ESTADÍSTICAS -->
+      <section class="content spa-section" id="section-estadisticas" data-section="estadisticas" style="display:none">
+        <div class="page-title">
+          <h1>Estadísticas y Métricas del Docente</h1>
+          <p>Indicadores globales de cumplimiento de clases y seguimiento del rendimiento grupal.</p>
+        </div>
+
+        <div class="stats-kpi-grid">
+          <div class="spa-card stat-metric-card">
+            <div class="stat-metric-header"><span>Asistencia Docente</span><span class="stat-badge green">100% puntual</span></div>
+            <div class="stat-metric-value">100%</div>
+            <div class="progress-track" style="margin-top:10px;"><div class="progress-bar" style="width:100%"></div></div>
+            <p class="stat-note">48 / 48 sesiones dictadas</p>
+          </div>
+          <div class="spa-card stat-metric-card">
+            <div class="stat-metric-header"><span>Asistencia Promedio Alumnos</span><span class="stat-badge blue">General</span></div>
+            <div class="stat-metric-value">88.2%</div>
+            <div class="progress-track" style="margin-top:10px;"><div class="progress-bar" style="width:88.2%; background:var(--purple);"></div></div>
+            <p class="stat-note">En las 4 secciones a cargo</p>
+          </div>
+          <div class="spa-card stat-metric-card">
+            <div class="stat-metric-header"><span>Alumnos en Riesgo (>30% faltas)</span><span class="stat-badge orange">2 alumnos</span></div>
+            <div class="stat-metric-value" style="color:var(--orange)">2</div>
+            <p class="stat-note" style="margin-top:10px;">Requieren alerta preventiva inmediata.</p>
+          </div>
+          <div class="spa-card stat-metric-card">
+            <div class="stat-metric-header"><span>Horas Lectivas Dictadas</span><span class="stat-badge green">Completado</span></div>
+            <div class="stat-metric-value">96 <span style="font-size:16px;color:#6d8099">hrs</span></div>
+            <p class="stat-note" style="margin-top:10px;">Avance del sílabo: 68%</p>
+          </div>
+        </div>
+
+        <div class="spa-grid-2" style="margin-top:20px;">
+          <div class="spa-card">
+            <div class="spa-card-title"><i class="fa-solid fa-triangle-exclamation" style="color:var(--orange)"></i> Alumnos en Riesgo de Inhabilitación</div>
+            <div class="cal-event-list">
+              <div class="cal-event-item orange"><span class="cal-dot"></span><div><strong>Diego Mendoza · Programación en Python</strong><span>28% de inasistencias (7 faltas acumuladas)</span></div></div>
+              <div class="cal-event-item orange"><span class="cal-dot"></span><div><strong>Pedro Alarcón · Estadística para la Gestión</strong><span>26% de inasistencias (6 faltas acumuladas)</span></div></div>
+            </div>
+          </div>
+          <div class="spa-card">
+            <div class="spa-card-title"><i class="fa-solid fa-file-arrow-down" style="color:var(--primary)"></i> Generar Reportes de Asistencia</div>
+            <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Selecciona el curso y descarga el reporte oficial para secretaría académica en Excel o PDF.</p>
+
+            <!-- SELECTOR DE CURSO -->
+            <div style="margin-bottom:14px;">
+              <label style="font-size:12px;font-weight:600;color:#3a5270;display:block;margin-bottom:6px;"><i class="fa-solid fa-book-open" style="margin-right:5px;color:var(--primary)"></i>Curso a reportar</label>
+              <select id="reportCursoSelectProf" style="width:100%;padding:9px 12px;border:1.5px solid #d5e2f0;border-radius:9px;font-size:13px;color:#233047;background:#f8fafc;cursor:pointer;">
+                <option value="">— Selecciona un curso —</option>
+                <option value="1">Programación en Python (ID 1)</option>
+                <option value="2">Inteligencia Artificial (ID 2)</option>
+                <option value="3">Estadística para la Gestión (ID 3)</option>
+                <option value="4">Ciberseguridad (ID 4)</option>
+              </select>
+            </div>
+
+            <!-- BOTONES DE DESCARGA -->
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <button id="btnDescargaXlsxProf" type="button" class="btn-ask-ai" style="margin-top:0;flex:1;min-width:140px;background:linear-gradient(135deg,#16855a,#0ea86b);">
+                <i class="fa-solid fa-file-excel"></i> Descargar Excel (.xlsx)
+              </button>
+              <button id="btnDescargaPdfProf" type="button" class="btn-ask-ai" style="margin-top:0;flex:1;min-width:140px;background:linear-gradient(135deg,#b91c1c,#dc2626);">
+                <i class="fa-solid fa-file-pdf"></i> Descargar PDF (.pdf)
+              </button>
+            </div>
+
+            <p style="font-size:11.5px;color:var(--muted);margin-top:10px;"><i class="fa-solid fa-circle-info" style="margin-right:4px;"></i>El reporte se generará en tiempo real con los datos registrados en MySQL.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MI PERFIL -->
+      <section class="content spa-section" id="section-perfil" data-section="mi-perfil" style="display:none">
+        <div class="page-title">
+          <h1>Mi Perfil Docente</h1>
+          <p>Información profesional, datos académicos y preferencias de seguridad.</p>
+        </div>
+        <div class="spa-grid-2" style="margin-top:20px;">
+          <div class="spa-card profile-card">
+            <div class="profile-hero">
+              <img src="../assets/img/usuarios/profesor.jpg" alt="Foto" class="profile-big-pic"/>
+              <div>
+                <h2 data-auth-name>Prof. Carlos Mendoza</h2>
+                <span class="role-tag" data-auth-role>Docente Ordinario</span>
+                <p style="margin-top:6px;color:#526983;font-size:13px">Departamento de Ingeniería y Ciencia de Datos</p>
+              </div>
+            </div>
+            <div class="profile-info-grid">
+              <div class="profile-info-item"><i class="fa-regular fa-envelope"></i><div><label>Correo institucional</label><span id="profileEmail">carlos.mendoza@institucion.edu.pe</span></div></div>
+              <div class="profile-info-item"><i class="fa-solid fa-id-badge"></i><div><label>Código Docente</label><span>DOC-2026-044</span></div></div>
+              <div class="profile-info-item"><i class="fa-solid fa-graduation-cap"></i><div><label>Grado Académico</label><span>Magíster en Ing. de Software</span></div></div>
+              <div class="profile-info-item"><i class="fa-solid fa-building-columns"></i><div><label>Facultad</label><span>Ingeniería de Sistemas</span></div></div>
+            </div>
+          </div>
+          <div class="spa-card">
+            <div class="spa-card-title"><i class="fa-solid fa-lock"></i> Seguridad y Contraseña</div>
+            <form class="profile-form" onsubmit="return false">
+              <div class="profile-form-row"><label>Contraseña actual</label><input type="password" placeholder="••••••••"/></div>
+              <div class="profile-form-row"><label>Nueva contraseña</label><input type="password" placeholder="••••••••"/></div>
+              <div class="profile-form-row"><label>Confirmar contraseña</label><input type="password" placeholder="••••••••"/></div>
+              <button type="submit" class="profile-save-btn"><i class="fa-solid fa-floppy-disk"></i> Actualizar credenciales</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+
+  </div>
+
+
+
+  <!-- =====================================================
+       CHATBOT GLOBAL
+       Compartido por estudiante / profesor / administrador
+  ====================================================== -->
+
+
+  <!-- OVERLAY -->
+
+  <div
+    class="chat-overlay"
+    id="chatOverlay"
+  ></div>
+
+
+
+  <!-- =====================================================
+       BOTÓN FLOTANTE
+  ====================================================== -->
+
+  <button
+    class="chat-floating-button"
+    id="chatFloatingButton"
+    type="button"
+    aria-label="Abrir Asistente IA"
+  >
+
+    <img
+      src="../assets/img/chatbot/asistente-ia.png"
+      alt="Asistente IA"
+      class="chat-floating-image"
+    >
+
+  </button>
+
+
+
+  <!-- =====================================================
+       PANEL CHATBOT
+  ====================================================== -->
+
+  <aside
+    class="chat-panel"
+    id="chatPanel"
+  >
+
+
+    <!-- =================================================
+         HEADER CHAT
+    ================================================== -->
+
+    <header class="chat-header">
+
+
+      <div class="chat-header-left">
+
+
+        <!-- AVATAR -->
+
+        <div class="chat-header-avatar">
+
+          <img
+            src="../assets/img/chatbot/asistente-ia.png"
+            alt="Asistente IA"
+          >
+
+        </div>
+
+
+
+        <!-- INFORMACIÓN -->
+
+        <div class="chat-header-text">
+
+          <strong>
+            Asistente IA
+          </strong>
+
+          <span id="chatRoleLabel">
+            Estudiante
+          </span>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- ACCIONES -->
+
+      <div class="chat-header-actions">
+
+
+        <!-- AMPLIAR -->
+
+        <button
+          class="chat-header-button"
+          id="expandChatButton"
+          type="button"
+          aria-label="Ampliar chat"
+          title="Ampliar"
+        >
+
+          <i class="fa-solid fa-expand"></i>
+
+        </button>
+
+
+
+        <!-- NUEVA CONVERSACIÓN -->
+
+        <button
+          class="chat-header-button"
+          id="newChatButton"
+          type="button"
+          aria-label="Nueva conversación"
+          title="Nueva conversación"
+        >
+
+          <i class="fa-solid fa-plus"></i>
+
+        </button>
+
+
+
+        <!-- CERRAR -->
+
+        <button
+          class="chat-header-button"
+          id="closeChatButton"
+          type="button"
+          aria-label="Cerrar chat"
+          title="Cerrar"
+        >
+
+          <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+
+      </div>
+
+
+    </header>
+
+
+
+    <!-- =================================================
+         CUERPO DEL CHAT
+    ================================================== -->
+
+    <div
+      class="chat-body"
+      id="chatBody"
+    >
+
+
+      <!-- ===============================================
+           BIENVENIDA
+      ================================================ -->
+
+      <section
+        class="chat-welcome"
+        id="chatWelcome"
+      >
+
+
+        <!-- ROBOT -->
+
+        <div class="chat-welcome-robot">
+
+          <img
+            src="../assets/img/chatbot/asistente-ia.png"
+            alt="Asistente virtual"
+          >
+
+        </div>
+
+
+
+        <!-- SALUDO -->
+
+        <h2 id="chatGreeting">
+
+          Hola, Jakelin
+
+        </h2>
+
+
+        <p class="chat-welcome-question">
+
+          ¿En qué puedo ayudarte?
+
+        </p>
+
+
+
+        <!-- =============================================
+             SUGERENCIAS
+        ============================================== -->
+
+        <div
+          class="chat-suggestions"
+          id="chatSuggestions"
+        >
+
+
+          <button
+            class="chat-suggestion"
+            type="button"
+            data-message="¿Cuál es mi porcentaje de asistencia?"
+          >
+
+            <i class="fa-solid fa-chart-pie"></i>
+
+            ¿Cuál es mi porcentaje de asistencia?
+
+          </button>
+
+
+
+          <button
+            class="chat-suggestion"
+            type="button"
+            data-message="¿Cuántas faltas tengo?"
+          >
+
+            <i class="fa-solid fa-user-xmark"></i>
+
+            ¿Cuántas faltas tengo?
+
+          </button>
+
+
+
+          <button
+            class="chat-suggestion"
+            type="button"
+            data-message="¿Cuántas tardanzas tengo?"
+          >
+
+            <i class="fa-solid fa-clock"></i>
+
+            ¿Cuántas tardanzas tengo?
+
+          </button>
+
+
+
+          <button
+            class="chat-suggestion"
+            type="button"
+            data-message="Muéstrame mis cursos"
+          >
+
+            <i class="fa-solid fa-book-open"></i>
+
+            Muéstrame mis cursos
+
+          </button>
+
+
+
+          <button
+            class="chat-suggestion"
+            type="button"
+            data-message="¿Cuál es mi próxima clase?"
+          >
+
+            <i class="fa-solid fa-calendar-days"></i>
+
+            ¿Cuál es mi próxima clase?
+
+          </button>
+
+
+        </div>
+
+
+      </section>
+
+
+
+      <!-- ===============================================
+           MENSAJES
+      ================================================ -->
+
+      <section
+        class="chat-messages"
+        id="chatMessages"
+        aria-live="polite"
+      >
+
+      </section>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         FOOTER CHAT
+    ================================================== -->
+
+    <footer class="chat-footer">
+
+
+      <div class="chat-input-container">
+
+
+        <textarea
+          id="chatInput"
+          rows="1"
+          maxlength="1000"
+          placeholder="Pregunta sobre tus cursos, asistencia o actividades..."
+          aria-label="Escribe tu pregunta"
+        ></textarea>
+
+
+
+        <!-- ENVIAR -->
+
+        <button
+          class="chat-send-button"
+          id="chatSendButton"
+          type="button"
+          aria-label="Enviar mensaje"
+        >
+
+          <i class="fa-solid fa-paper-plane"></i>
+
+        </button>
+
+
+      </div>
+
+
+
+      <!-- PERMISOS -->
+
+      <div class="chat-footer-info">
+
+
+        <i class="fa-solid fa-shield-halved"></i>
+
+
+        <span id="chatPermissionText">
+
+          Solo puedes consultar información asociada a tu cuenta.
+
+        </span>
+
+
+      </div>
+
+
+    </footer>
+
+
+  </aside>
+
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
+
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      await AsistenciaAuth.protectPage(["PROFESOR"]);
+      document.getElementById("logoutLink")?.addEventListener("click", AsistenciaAuth.logoutUser);
+    });
+  </script>
+  <script src="../assets/js/estudiante.js?v=2"></script>
+  <script src="../assets/js/chatbot.js"></script>
+  <script src="../assets/js/reports.js?v=1"></script>
+
+
+</body>
+
+</html>
